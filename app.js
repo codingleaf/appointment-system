@@ -3,6 +3,7 @@ dotenv.config();
 
 import express from 'express';
 import mongoose from 'mongoose';
+import authRoutes from './routes/auth-routes.js';
 
 // ExpressJS application
 const app = express();
@@ -11,8 +12,12 @@ const app = express();
 app.set('view engine', 'ejs');
 
 // Connect to database
-await mongoose.connect(process.env.MONGODB_URI);
-console.log('Successfully Connected to Database');
+try {
+  await mongoose.connect(process.env.MONGODB_URI);
+  console.log('Successfully Connected to Database');
+} catch (err) {
+  console.error(err);
+}
 
 // Connect to server
 app.listen(process.env.PORT, console.log('Server listening on Port', process.env.PORT));
@@ -30,13 +35,7 @@ app.get('/', (req, res) => {
   res.render('home', { title: 'HOME' });
 });
 
-app.get('/login', (req, res) => {
-  res.render('login', { title: 'LOGIN' });
-});
-
-app.get('/signup', (req, res) => {
-  res.render('signup', { title: 'SIGN UP' });
-});
+app.use('/', authRoutes);
 
 // 404 Error Handling
 app.use((req, res) => {
