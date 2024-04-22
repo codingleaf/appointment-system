@@ -16,8 +16,7 @@ app.set('view engine', 'ejs');
 try {
   await mongoose.connect(mongodbURI);
   console.log('Successfully Connected to Database');
-  app.listen(PORT);
-  console.log('Server listening on Port', PORT);
+  app.listen(PORT, console.log('Server listening on Port', PORT));
 } catch(error) {
   console.error(error);
 }
