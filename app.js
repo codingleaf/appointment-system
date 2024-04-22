@@ -23,19 +23,24 @@ try {
 app.listen(process.env.PORT, console.log('Server listening on Port', process.env.PORT));
 
 /* In POST request, takes all url encoded data
-  * and passes that into an object that can be used
-  * on the request object
-  */
+ * and passes that into an object that can be used
+ * on the request object
+ */
 app.use(express.urlencoded({ extended: true }));
 
 // Serve static files (images, css, etc.)
 app.use(express.static('./public'));
 
+/* Parses JSON that comes from a request into a JavaScript Object
+ * and attaches it to the request object for accessing with request handlers
+ */
+app.use(express.json());
+
 app.get('/', (req, res) => {
   res.render('home', { title: 'HOME' });
 });
 
-app.use('/', authRoutes);
+app.use(authRoutes);
 
 // 404 Error Handling
 app.use((req, res) => {
