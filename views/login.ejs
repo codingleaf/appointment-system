@@ -1,4 +1,10 @@
-<%- include('./partials/header.ejs') %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include('./partials/header.ejs') %>
+</head>
+<body>
+  <%- include('./partials/nav.ejs') %>
   <form action="/login" method="POST">
     <h1>LOGIN</h1>
     <div>
@@ -57,4 +63,6 @@
       }
     })
   </script>
-<%- include('./partials/footer.ejs') %>
+  <%- include('./partials/footer.ejs') %>
+</body>
+</html>

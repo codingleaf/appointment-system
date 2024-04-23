@@ -1,0 +1,12 @@
+<nav>
+  <h1><a href="/">BU POLANGUI GUIDANCE OFFICE APPOINTMENT SYSTEM</a></h1>
+  <ul>
+    <% if (user) { %>
+        <li>Welcome, <%= user.firstName %></li>
+        <li><a href="/logout">LOG OUT</a></li>
+    <% } else { %>
+        <li><a href="/login">LOG IN</a></li>
+        <li><a href="/signup">SIGN UP</a></li>
+    <% } %>
+  </ul>
+</nav>
