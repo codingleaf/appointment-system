@@ -5,6 +5,14 @@ const handleErrors = (err) => {
   console.log(err.message, err.code);
   let errors = { firstName: '', lastName: '', email: '', password: '', role: '' };
 
+  if (err.message === 'Invalid Email') {
+    errors.email = 'Invalid Email';
+  }
+
+  if (err.message === 'Incorrect Password') {
+    errors.password = 'Incorrect Password';
+  }
+
   // duplicate error code
   if (err.code === 11000) {
     errors.email = 'Email is already registered';
@@ -49,6 +57,16 @@ export const login_get = (req, res) => {
   res.render('login', { title: 'LOGIN' });
 };
 
-export const login_post = (req, res) => {
-  
+export const login_post = async (req, res) => {
+  const { email, password } = req.body;
+
+  try {
+    const user = await User.login(email, password);
+    const token = createToken(user._id); // set json web token
+    res.cookie('jwt', token, {httpOnly: true, maxAge: maxAge * 1000}); // set cookie
+    res.status(200).json({ user: user._id });
+  } catch (err) {
+    const errors = handleErrors(err);
+    res.status(400).json({ errors })
+  }
 };
