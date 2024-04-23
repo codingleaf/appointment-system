@@ -25,4 +25,18 @@
   </form>
   <a href="/login">Already have an account? Login</a>
 
+  <script>
+    const form = document.querySelector('form')
+    form.addEventListener('submit', (e) => {
+      // prevent page from refreshing
+      e.preventDefault();
+
+      const firstName = form.firstName.value;
+      const lastName = form.lastName.value;
+      const email = form.email.value;
+      const password = form.password.value;
+      const role = 'basic';
+    })
+  </script>
+
 <%- include('./partials/footer.ejs') %>

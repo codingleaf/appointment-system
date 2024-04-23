@@ -1,5 +1,6 @@
 import mongoose from 'mongoose';
 import validator from 'validator';
+import bcrypt from 'bcrypt';
 
 const userSchema = new mongoose.Schema({
   firstName: {
@@ -26,7 +27,20 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: [true, 'Role unset']
   }
-}, {timestamps: true})
+}, {timestamps: true});
+
+// mongoose hooks
+userSchema.pre('save', async function (next) {
+  console.log('Creating user...');
+  const saltRounds = await bcrypt.genSalt();
+  this.password = await bcrypt.hash(this.password, saltRounds);
+  next();
+})
+
+userSchema.post('save', function (doc, next) {
+  console.log("Successfully registered new user");
+  next();
+});
 
 const User = mongoose.model('user', userSchema);
 export default User;
