@@ -5,6 +5,7 @@ import express from 'express';
 import mongoose from 'mongoose';
 import cookieParser from 'cookie-parser';
 import authRoutes from './routes/auth-routes.js';
+import requireAuth from './middleware/auth-middleware.js';
 
 // ExpressJS application
 const app = express();
@@ -44,6 +45,9 @@ app.use(cookieParser());
 app.get('/', (req, res) => {
   res.render('home', { title: 'HOME' });
 });
+app.get('/dashboard', requireAuth, (req, res) => {
+  res.render('dashboard', { title: 'Dashboard' });
+})
 app.use(authRoutes);
 
 // 404 Error Handling
