@@ -3,6 +3,7 @@ dotenv.config();
 
 import express from 'express';
 import mongoose from 'mongoose';
+import cookieParser from 'cookie-parser';
 import authRoutes from './routes/auth-routes.js';
 
 // ExpressJS application
@@ -36,14 +37,17 @@ app.use(express.static('./public'));
  */
 app.use(express.json());
 
+// Cookies handler
+app.use(cookieParser());
+
+// Routes
 app.get('/', (req, res) => {
   res.render('home', { title: 'HOME' });
 });
-
 app.use(authRoutes);
 
 // 404 Error Handling
 app.use((req, res) => {
-  res.status(404).render('404', { title: '404' });
+  res.status(404).render('404', { title: 'ERROR: 404' });
 });
 
