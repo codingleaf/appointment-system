@@ -1,0 +1,54 @@
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-right: 1rem;
+  background-color: lightblue;
+}
+
+.btn-list {
+  list-style-type: none;
+  display: flex;
+  gap: 1rem;
+}
+
+.favicon {
+  width: 5rem;
+  height: auto;
+}
+
+.error {
+  color: red;
+}
+
+label {
+  display: block;
+}
+
+footer {
+  display: flex;
+  justify-content: center;
+  padding: 0.5rem;
+  background-color: lightblue;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  background-color: lightcyan;
+  padding: 2rem;
+}
+
+.form-div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+}
