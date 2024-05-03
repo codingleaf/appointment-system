@@ -1,8 +1,8 @@
 <nav>
   <a href="/"><img class="home-icon" src="/images/bupGO-icon.svg" alt="BUP Guidance Office Logo"></a>
-  <ul class="btn-list">
+  <ul class="nav-list">
     <% if (user) { %>
-        <li>Welcome, <%= user.firstName %></li>
+        <li><p>Welcome, <%= user.firstName %></p></li>
         <li><a href="/logout"><button class="logout-btn">LOG OUT</button></a></li>
     <% } else { %>
         <li><a href="/login"><button class="login-btn">LOG IN</button></a></li>
