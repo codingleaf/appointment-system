@@ -26,6 +26,9 @@ const userSchema = new mongoose.Schema({
   role: {
     type: String,
     required: [true, 'Role unset']
+  },
+  appointments: {
+    type: Array
   }
 }, {timestamps: true});
 
