@@ -1,0 +1,35 @@
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh
+}
+  
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-right: 1rem;
+    background-color: lightblue;
+}
+
+.btn-list {
+    list-style-type: none;
+    display: flex;
+    gap: 1rem;
+}
+
+.home-icon {
+    width: 5rem;
+    height: auto;
+}
+
+.content {
+    flex: 1;
+}
+
+footer {
+    display: flex;
+    justify-content: center;
+    padding: 0.5rem;
+    background-color: lightblue;
+}

@@ -44,7 +44,8 @@ app.use(cookieParser());
 // Routes
 app.get('*', checkUser);
 app.get('/', (req, res) => res.render('home', { title: 'HOME' }));
-app.get('/dashboard', requireAuth, (req, res) => res.render('dashboard', { title: 'Dashboard' }));
+app.get('/create-appointment', requireAuth, (req, res) => res.render('create-appointment', { title: 'Create Appointment' }));
+app.get('/appointment-details', requireAuth, (req, res) => res.render('appointment-details', { title: 'Appointment Details' }));
 app.use(authRoutes);
 
 // 404 Error Handling
