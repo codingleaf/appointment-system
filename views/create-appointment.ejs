@@ -3,16 +3,6 @@
 <head>
   <%- include('./partials/header.ejs') %>
   <link rel="stylesheet" type="text/css" href="/styles/create-appointment.css">
-  <script src='https://cdn.jsdelivr.net/npm/fullcalendar/index.global.min.js'></script>
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      const calendarEl = document.getElementById('calendar')
-      const calendar = new FullCalendar.Calendar(calendarEl, {
-        initialView: 'dayGridMonth'
-      })
-      calendar.render()
-    })
-  </script>
 </head>
 <body>
   <%- include('./partials/nav.ejs') %>
@@ -24,17 +14,55 @@
       <div class="services">
         <h1>SELECT SERVICES</h1>
         <ul>
-          <button>Counseling</button>
-          <button>Signing of Clearance</button>
-          <button>Student Handbook</button>
+          <button class="counseling">Counseling</button>
+          <button class="signing">Signing of Clearance</button>
+          <button class="handbook">Student Handbook</button>
         </ul>
       </div>
       <div class="date">
         <h1>SELECT DATE</h1>
+        <div class="selected-date"></div>
         <div id="calendar"></div>
       </div>
     </div>
   </div>
+
+  <script src='https://cdn.jsdelivr.net/npm/fullcalendar/index.global.min.js'></script>
+  <script>
+    let date = null;
+    document.addEventListener('DOMContentLoaded', function() {
+      const calendarEl = document.getElementById('calendar')
+      const calendar = new FullCalendar.Calendar(calendarEl, {
+        initialView: 'dayGridMonth',
+        dateClick: (info) => {
+          date = info.dateStr;
+          let selectedDate = document.querySelector('.selected-date');
+          selectedDate.textContent = 'Selected Date: ' + date;
+          selectedDate.style.padding = '0.5rem 0';
+        }
+      })
+      calendar.render()
+    })
+
+    const buttons = document.querySelectorAll('.services > ul > button');
+    let chosenServices =[];
+    buttons.forEach((button) => {
+      button.style.backgroundColor = 'gray';
+      button.addEventListener('click', () => {
+        if (button.style.backgroundColor === 'gray') {
+          button.style.backgroundColor = '#008080';
+          button.style.boxShadow = '1px 1px 3px 0 gray';
+          chosenServices.push(button);
+        }
+        else {
+          button.style.backgroundColor = 'gray';
+          button.style.boxShadow = '';
+          const index = chosenServices.indexOf(button);
+          chosenServices.splice(index, 1);
+        }
+      })
+    })
+  </script>
   <%- include('./partials/footer.ejs') %>
 </body>
 </html>

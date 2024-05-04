@@ -16,7 +16,15 @@ nav {
   box-shadow: 0 3px 3px -3px gray;
   margin: 0 0.5rem;
   padding: 0.5rem;
-  align-content: center;
+}
+
+.nav-list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-left: auto;
 }
 
 a:hover, button:hover {
@@ -55,15 +63,6 @@ button {
 h1 {
   text-align: center;
   font-size: 1.8rem;
-}
-
-.nav-list {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  gap: 1rem;
-  margin-left: auto;
 }
 
 .home-icon {
