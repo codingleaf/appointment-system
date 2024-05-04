@@ -3,12 +3,13 @@ body {
   flex-direction: column;
   min-height: 100vh;
   font-family: 'Poppins', Arial, Helvetica, sans-serif;
+  font-size: 0.98rem;
 }
 
 nav {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   background-color: white;
   border-bottom: 1px solid lightgray;
@@ -20,6 +21,25 @@ nav {
 
 a:hover, button:hover {
   cursor: pointer;
+}
+
+input {
+  border-bottom: 1px solid gray;
+  width: 100%;
+}
+
+.error {
+  color: red;
+  font-size: 0.8rem;
+}
+
+a {
+  color: rgb(0, 140, 255);
+  text-decoration: underline;
+}
+
+hr {
+  border-top: 1px solid black;
 }
 
 button {
@@ -34,17 +54,20 @@ button {
 
 h1 {
   text-align: center;
-  font-size: 2rem;
+  font-size: 1.8rem;
 }
 
 .nav-list {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
+  justify-content: center;
   gap: 1rem;
+  margin-left: auto;
 }
 
 .home-icon {
-  width: 5rem;
+  max-width: 5rem;
   height: auto;
 }
 
@@ -59,4 +82,5 @@ footer {
   padding: 0.5rem;
   background-color: #625AD8;
   color: lightgray;
+  text-align: center;
 }
