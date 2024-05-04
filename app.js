@@ -45,6 +45,9 @@ app.use(cookieParser());
 app.get('*', checkUser);
 app.get('/', (req, res) => res.render('home', { title: 'HOME' }));
 app.get('/create-appointment', requireAuth, (req, res) => res.render('create-appointment', { title: 'Create Appointment' }));
+app.post('/create-appointment', (req, res) => {
+  console.log(req.body);
+})
 app.get('/appointment-details', requireAuth, (req, res) => res.render('appointment-details', { title: 'Appointment Details' }));
 app.use(authRoutes);
 

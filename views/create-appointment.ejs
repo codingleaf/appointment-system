@@ -10,12 +10,13 @@
     <h1>
       CREATE APPOINTMENT
     </h1>
+
     <div class="appointment-selection">
       <div class="services">
         <h1>SELECT SERVICES</h1>
         <ul>
           <button class="counseling">Counseling</button>
-          <button class="signing">Signing of Clearance</button>
+          <button class="clearance-signing">Signing of Clearance</button>
           <button class="handbook">Student Handbook</button>
         </ul>
       </div>
@@ -25,6 +26,12 @@
         <div id="calendar"></div>
       </div>
     </div>
+    
+    <form action="/create-appointment" method="POST">
+      <input class="input-services" name="services" type="hidden">
+      <input class="input-date" name="appointmentDate" type="hidden">
+      <button type="submit">SUBMIT</button>
+    </form>
   </div>
 
   <script src='https://cdn.jsdelivr.net/npm/fullcalendar/index.global.min.js'></script>
@@ -39,6 +46,8 @@
           let selectedDate = document.querySelector('.selected-date');
           selectedDate.textContent = 'Selected Date: ' + date;
           selectedDate.style.padding = '0.5rem 0';
+
+          document.querySelector('.input-date').value = date;
         }
       })
       calendar.render()
@@ -52,14 +61,15 @@
         if (button.style.backgroundColor === 'gray') {
           button.style.backgroundColor = '#008080';
           button.style.boxShadow = '1px 1px 3px 0 gray';
-          chosenServices.push(button);
+          chosenServices.push(button.className);
         }
         else {
           button.style.backgroundColor = 'gray';
           button.style.boxShadow = '';
-          const index = chosenServices.indexOf(button);
+          const index = chosenServices.indexOf(button.className);
           chosenServices.splice(index, 1);
         }
+        document.querySelector('.input-services').value = JSON.stringify(chosenServices);
       })
     })
   </script>

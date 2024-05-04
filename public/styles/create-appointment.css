@@ -3,7 +3,7 @@
   flex-wrap: wrap;
   justify-content: center;
   gap: 1rem;
-  padding-top: 1rem;
+  padding: 1rem 0;
 }
 
 .services button {
@@ -92,4 +92,9 @@
 
 .fc-media-screen {
   min-width: 16rem;
+}
+
+form {
+  display: flex;
+  justify-content: end;
 }
