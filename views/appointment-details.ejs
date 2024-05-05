@@ -10,10 +10,28 @@
     <h1>
       APPOINTMENT DETAILS
     </h1>
-    <% if (appointment) {%>
-      <a href="/edit-appointment"><button class="btn-edit-appointment">EDIT APPOINTMENT</button></a>
+    <% if (appointment) { %>
+      <div class="appointment-details">
+        <div class="div-date">
+          <div class="title">DATE</div>
+          <div class="cell"><%= appointment.appointmentDate %></div>
+        </div>
+        <div class="div-time">
+          <div class="title">TIME</div>
+          <div class="cell"><%= appointment.appointmentTime %></div>
+        </div>
+        <div class="div-services">
+          <div class="title">SERVICES</div>
+          <div class="cell"><%= appointment.services %></div>
+        </div>
+      </div>
+      <div class="btn-div">
+        <a href="/change-appointment"><button class="btn-change-appointment">CHANGE APPOINTMENT</button></a>
+      </div>
     <% } else { %>
-      <a href="/create-appointment"><button class="btn-create-appointment">CREATE APPOINTMENT</button></a>
+      <div class="btn-div">
+        <a href="/create-appointment"><button class="btn-create-appointment">CREATE APPOINTMENT</button></a>
+      </div>
     <% } %> 
   </div>
   <%- include('./partials/footer.ejs') %>

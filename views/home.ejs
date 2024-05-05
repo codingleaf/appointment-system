@@ -11,7 +11,9 @@
       HOMEPAGE
     </h1>
     <% if (user) { %>
-      <a href="/appointment-details"><button class="btn-view-appointment">View Appointment</button></a>
+      <div class="div-btn">
+        <a href="/appointment-details"><button class="btn-view-appointment">View Appointment</button></a>
+      </div>
     <% } %>
   </div>
   <%- include('./partials/footer.ejs') %>
