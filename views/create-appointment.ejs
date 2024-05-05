@@ -21,15 +21,26 @@
         </ul>
       </div>
       <div class="date">
-        <h1>SELECT DATE</h1>
+        <h1>SELECT DATE & TIME</h1>
+        <select class="selected-time">
+          <option disabled selected value> SELECT TIME OF APPOINTMENT </option>
+          <option>8AM - 9AM</option>
+          <option>9AM - 10AM</option>
+          <option>10AM - 11AM</option>
+          <option>11AM - 12PM</option>
+          <option>1PM - 2PM</option>
+          <option>2PM-3PM</option>
+        </select>
+
         <div class="selected-date"></div>
         <div id="calendar"></div>
       </div>
     </div>
     
     <form action="/create-appointment" method="POST">
-      <input class="input-services" name="services" type="hidden">
       <input class="input-date" name="appointmentDate" type="hidden">
+      <input class="input-time" name="appointmentTime" type="hidden">
+      <input class="input-services" name="services" type="hidden">
       <button type="submit">SUBMIT</button>
     </form>
   </div>
@@ -53,6 +64,11 @@
       calendar.render()
     })
 
+    const selectedTime = document.querySelector('.selected-time');
+    selectedTime.addEventListener('change', () => {
+      document.querySelector('.input-time').value = selectedTime.options[selectedTime.selectedIndex].text;
+    })
+
     const buttons = document.querySelectorAll('.services > ul > button');
     let chosenServices =[];
     buttons.forEach((button) => {
@@ -71,6 +87,30 @@
         }
         document.querySelector('.input-services').value = JSON.stringify(chosenServices);
       })
+    })
+
+    const form = document.querySelector('form');
+    form.addEventListener('submit', async (e) => {
+      // prevent page from refreshing
+      e.preventDefault();
+
+      const services = form.services.value;
+      const appointmentDate = form.appointmentDate.value;
+      const appointmentTime = form.appointmentTime.value;
+
+      try {
+        const res = await fetch('/create-appointment', {
+          method: "POST",
+          body: JSON.stringify({ appointmentDate, appointmentTime, services }),
+          headers: {'Content-Type': 'application/json'}
+        });
+
+        const data = await res.json();
+        console.log(data);
+      }
+      catch(err) {
+        console.error(err);
+      }
     })
   </script>
   <%- include('./partials/footer.ejs') %>

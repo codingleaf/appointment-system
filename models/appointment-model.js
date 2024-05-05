@@ -2,8 +2,12 @@ import mongoose from 'mongoose';
 
 const appointmentSchema = new mongoose.Schema({
   appointmentDate: {
-    type: Date,
-    required: [true, 'Pick a valid Date and Time'],
+    type: String,
+    required: [true, 'Pick a Date'],
+  },
+  appointmentTime: {
+    type: String,
+    required: [true, 'Pick a Time']
   },
   services: {
     type: Array,

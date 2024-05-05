@@ -28,7 +28,31 @@
 }
 
 .date {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   flex: 1;
+  text-align: center;
+}
+
+option {
+  background-color: white;
+  color: rgb(0, 128, 128);
+  text-align: center;
+}
+
+.selected-time:hover{
+  cursor: pointer;
+}
+
+.selected-time {
+  background-color: rgb(0, 128, 128);
+  color: white;
+  font-weight: bold;
+  border-radius: 1rem;
+  padding: 0.5rem;
+  appearance: auto;
+  margin-top: 0.5rem;
 }
 
 .date > h1,
