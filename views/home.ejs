@@ -12,7 +12,11 @@
     </h1>
     <% if (user) { %>
       <div class="div-btn">
-        <a href="/appointment-details"><button class="btn-view-appointment">View Appointment</button></a>
+        <% if (user.role === 'basic') { %>
+          <a href="/appointment-details"><button class="btn-view-appointment">View Appointment</button></a>
+        <% } else if (user.role === 'admin') { %>
+          <a href="/admin-appointment-details"><button class="btn-view-appointment">View All Appointments</button></a>
+        <% } %>
       </div>
     <% } %>
   </div>

@@ -75,6 +75,7 @@ app.post('/create-appointment', async (req, res, next) => {
 })
 app.get('/appointment-details', requireAuth, (req, res) => res.render('appointment-details', { title: 'Appointment Details' }));
 app.get('/change-appointment', requireAuth, (req, res) => res.render('change-appointment', { title: 'Change Appointment' }));
+app.get('/admin-appointment-details', requireAuth, (req, res) => res.render('admin-appointment-details', { title: 'View All Appointments' }));
 app.use(authRoutes);
 
 // 404 Error Handling
