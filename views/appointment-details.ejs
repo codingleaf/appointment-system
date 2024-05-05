@@ -10,7 +10,11 @@
     <h1>
       APPOINTMENT DETAILS
     </h1>
-    <a href="/create-appointment"><button class="btn-create-appointment">Create Appointment</button></a>
+    <% if (appointment) {%>
+      <a href="/edit-appointment"><button class="btn-edit-appointment">EDIT APPOINTMENT</button></a>
+    <% } else { %>
+      <a href="/create-appointment"><button class="btn-create-appointment">CREATE APPOINTMENT</button></a>
+    <% } %> 
   </div>
   <%- include('./partials/footer.ejs') %>
 </body>

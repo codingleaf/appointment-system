@@ -74,6 +74,7 @@ app.post('/create-appointment', async (req, res, next) => {
   }
 })
 app.get('/appointment-details', requireAuth, (req, res) => res.render('appointment-details', { title: 'Appointment Details' }));
+app.get('/edit-appointment', requireAuth, (req, res) => res.render('edit-appointment', { title: 'Edit Appointment' }));
 app.use(authRoutes);
 
 // 404 Error Handling

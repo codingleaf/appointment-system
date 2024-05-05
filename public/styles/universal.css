@@ -60,6 +60,10 @@ button {
   text-align: center;
 }
 
+button:hover {
+  opacity: 0.9;
+}
+
 h1 {
   text-align: center;
   font-size: 1.8rem;
