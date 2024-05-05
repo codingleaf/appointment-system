@@ -1,6 +1,10 @@
 import mongoose from 'mongoose';
 
 const appointmentSchema = new mongoose.Schema({
+  userID: {
+    type: String,
+    required: [true, 'Unknown User']
+  },
   appointmentDate: {
     type: String,
     required: [true, 'Pick a Date'],

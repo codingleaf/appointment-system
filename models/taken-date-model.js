@@ -1,12 +1,12 @@
 import mongoose from 'mongoose';
 
 const takenDateTimeSchema = new mongoose.Schema({
-  takenDate: {
-    type: Date,
+  takenDates: {
+    type: Array,
     required: [true, 'Date unset'],
   },
-  takenTime: {
-    type: Date,
+  takenTimes: {
+    type: Array,
     required: [true, 'Time unset']
   }
 }, {timestamps: true});

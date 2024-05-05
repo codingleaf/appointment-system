@@ -23,7 +23,7 @@
       <div class="date">
         <h1>SELECT DATE & TIME</h1>
         <select class="selected-time">
-          <option disabled selected value> SELECT TIME OF APPOINTMENT </option>
+          <option disabled selected value> SELECT TIME </option>
           <option>8AM - 9AM</option>
           <option>9AM - 10AM</option>
           <option>10AM - 11AM</option>
@@ -52,12 +52,18 @@
       const calendarEl = document.getElementById('calendar')
       const calendar = new FullCalendar.Calendar(calendarEl, {
         initialView: 'dayGridMonth',
+        weekends: false,
+
+        // validRange: {
+        //   start: '2024-05-06',
+        //   end: '2024-05-20'
+        // },
+
         dateClick: (info) => {
           date = info.dateStr;
           let selectedDate = document.querySelector('.selected-date');
           selectedDate.textContent = 'Selected Date: ' + date;
           selectedDate.style.padding = '0.5rem 0';
-
           document.querySelector('.input-date').value = date;
         }
       })
@@ -107,6 +113,7 @@
 
         const data = await res.json();
         console.log(data);
+        location.assign('/');
       }
       catch(err) {
         console.error(err);
