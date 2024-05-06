@@ -5,10 +5,8 @@ import express from 'express';
 import mongoose from 'mongoose';
 import cookieParser from 'cookie-parser';
 import authRoutes from './routes/auth-routes.js';
-import { requireAuth, checkUser } from './middleware/auth-middleware.js';
-import User from './models/user-model.js';
-import Appointment from './models/appointment-model.js';
-import jwt from 'jsonwebtoken';
+import appointmentRoutes from './routes/appointment-routes.js';
+import { checkUser } from './middleware/auth-middleware.js';
 
 // ExpressJS application
 const app = express();
@@ -47,36 +45,8 @@ app.use(cookieParser());
 // Routes
 app.get('*', checkUser);
 app.get('/', (req, res) => res.render('home', { title: 'HOME' }));
-app.get('/create-appointment', requireAuth, (req, res) => res.render('create-appointment', { title: 'Create Appointment' }));
-app.post('/create-appointment', async (req, res, next) => {
-  let { appointmentDate, appointmentTime, services } = req.body;
-  services = JSON.parse(services);
-
-  let userID = null;
-  const token = req.cookies.jwt;
-  if (token) {
-    jwt.verify(token, process.env.SECRET, async (err, decodedToken) => {
-      if (err) {
-        console.log(err.message);
-        res.status(400);
-      } else {
-        let user = await User.findById(decodedToken.id);
-        if (user) {
-          userID = decodedToken.id;
-          await Appointment.create({ userID, appointmentDate, appointmentTime, services });
-          console.log(req.body);
-          res.status(200).json(req.body);
-        }
-      }
-    })
-  } else {
-    res.status(400);
-  }
-})
-app.get('/appointment-details', requireAuth, (req, res) => res.render('appointment-details', { title: 'Appointment Details' }));
-app.get('/change-appointment', requireAuth, (req, res) => res.render('change-appointment', { title: 'Change Appointment' }));
-app.get('/admin-appointment-details', requireAuth, (req, res) => res.render('admin-appointment-details', { title: 'View All Appointments' }));
 app.use(authRoutes);
+app.use(appointmentRoutes);
 
 // 404 Error Handling
 app.use((req, res) => {

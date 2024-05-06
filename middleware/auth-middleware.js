@@ -40,7 +40,7 @@ export const checkUser = (req, res, next) => {
           res.locals.appointment = appointment;
         } else if (user.role === 'admin') {
           let appointmentCreators = [];
-          const appointments = await Appointment.find()
+          const appointments = await Appointment.find().sort({appointmentDate: 1})
           for (let i = 0; i < appointments.length; i++) {
             const appointmentCreator = await User.findOne({_id: appointments[i].userID})
             if (appointmentCreator) {

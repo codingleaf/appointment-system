@@ -17,7 +17,7 @@ tr:nth-of-type(2n) {
   background: hsl(0 0% 0% / 0.05)
 }
 
-@media (max-width: 650px) {
+@media (max-width: 790px) {
   th {
     display: none;
   }
