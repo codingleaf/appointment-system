@@ -19,6 +19,12 @@ export const create_appointment_post= async (req, res) => {
           let user = await User.findById(decodedToken.id);
           if (user) {
             userID = decodedToken.id;
+
+            const hasAppointment = await Appointment.findOne({userID}) ? true : false;
+            if (hasAppointment) {
+                await Appointment.deleteMany({userID});
+            }
+            
             await Appointment.create({ userID, appointmentDate, appointmentTime, services });
             console.log(req.body);
             res.status(200).json(req.body);
@@ -29,6 +35,16 @@ export const create_appointment_post= async (req, res) => {
       res.status(400);
     }
   };
+
+export const create_appointment_delete = async (req, res) => {
+  const id = req.params.id;
+  try {
+    await Appointment.deleteOne({_id: id});
+    res.json({ redirect: '/appointment-details' })
+  } catch (err) {
+    console.log(err);
+  }
+}
 
 export const appointment_details_get = (req, res) => res.render('appointment-details', { title: 'Appointment Details' });
 export const admin_appointment_details_get= (req, res) => res.render('admin-appointment-details', { title: 'View All Appointments' });

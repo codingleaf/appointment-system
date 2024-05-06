@@ -118,6 +118,15 @@ option {
   min-width: 16rem;
 }
 
+.div-buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.btn-cancel {
+  background-color: rgb(230, 32, 32);
+}
+
 form {
   display: flex;
   justify-content: end;
