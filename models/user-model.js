@@ -27,9 +27,6 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: [true, 'Role unset']
   },
-  appointments: {
-    type: Array
-  }
 }, {timestamps: true});
 
 // mongoose hooks

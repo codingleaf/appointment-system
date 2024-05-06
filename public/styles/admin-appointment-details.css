@@ -1,0 +1,45 @@
+table {
+  background-color: rgb(238, 211, 238);
+  width: 100%;
+}
+
+th,
+td {
+  padding: 1rem;
+}
+
+th {
+  background-color: rgb(175, 145, 175);
+  font-weight: bold;
+}
+
+tr:nth-of-type(2n) {
+  background: hsl(0 0% 0% / 0.05)
+}
+
+@media (max-width: 650px) {
+  th {
+    display: none;
+  }
+
+  td {
+    display: grid;
+    padding: 0.5rem 1rem;
+    gap: 0.5rem;
+  }
+
+  td:first-child {
+    padding-top: 1rem;
+  }
+
+  td:last-child {
+    padding-bottom: 1rem;
+  }
+
+  td::before {
+    content: attr(data-cell) ": ";
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+}
+

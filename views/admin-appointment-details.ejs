@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <%- include('./partials/header.ejs') %>
-  <link rel="stylesheet" type="text/css" href="/styles/appointment-details.css">
+  <link rel="stylesheet" type="text/css" href="/styles/admin-appointment-details.css">
 </head>
 <body>
   <%- include('./partials/nav.ejs') %>
@@ -10,25 +10,23 @@
     <h1>
       ALL APPOINTMENTS
     </h1>
-    <% if (appointment) { %>
-      <div class="appointment-details">
-        <div class="div-date">
-          <div class="title">DATE</div>
-          <div class="cell"><%= appointment.appointmentDate %></div>
-        </div>
-        <div class="div-time">
-          <div class="title">TIME</div>
-          <div class="cell"><%= appointment.appointmentTime %></div>
-        </div>
-        <div class="div-services">
-          <div class="title">SERVICES</div>
-          <div class="cell"><%= appointment.services %></div>
-        </div>
-      </div>
-      <div class="btn-div">
-        <a href="/change-appointment"><button class="btn-change-appointment">CHANGE APPOINTMENT</button></a>
-      </div>
-    <% } %>
+    
+    <table>
+      <th>NAME</th>
+      <th>EMAIL</th>
+      <th>DATE</th>
+      <th>TIME</th>
+      <th>SERVICES</th>
+      <% for (let i = 0; i < appointments.length; i++) { %>
+        <tr>
+          <td data-cell="name"><%= appointmentCreators[i].firstName + ' ' + appointmentCreators[i].lastName %></td>
+          <td data-cell="email"><%= appointmentCreators[i].email %></td>
+          <td data-cell="date"><%= appointments[i].appointmentDate %></td>
+          <td data-cell="time"><%= appointments[i].appointmentTime %></td>
+          <td data-cell="services"><%= appointments[i].services %></td>
+        </tr>
+      <% } %>
+    </table>
   </div>
   <%- include('./partials/footer.ejs') %>
 </body>

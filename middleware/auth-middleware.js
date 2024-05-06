@@ -31,11 +31,25 @@ export const checkUser = (req, res, next) => {
         next();
       } else {
         let user = await User.findById(decodedToken.id);
-        let appointment = await Appointment.findOne({userID: user._id});
         
         // make accessible in the views
         res.locals.user = user;
-        res.locals.appointment = appointment;
+
+        if (user.role === 'basic') {
+          const appointment = await Appointment.findOne({userID: user._id});
+          res.locals.appointment = appointment;
+        } else if (user.role === 'admin') {
+          let appointmentCreators = [];
+          const appointments = await Appointment.find()
+          for (let i = 0; i < appointments.length; i++) {
+            const appointmentCreator = await User.findOne({_id: appointments[i].userID})
+            if (appointmentCreator) {
+              appointmentCreators.push(appointmentCreator);
+            }
+          }
+          res.locals.appointments = appointments;
+          res.locals.appointmentCreators = appointmentCreators;
+        }
         next();
       }
     })
