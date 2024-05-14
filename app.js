@@ -52,4 +52,3 @@ app.use(appointmentRoutes);
 app.use((req, res) => {
   res.status(404).render('404', { title: 'ERROR: 404' });
 });
-

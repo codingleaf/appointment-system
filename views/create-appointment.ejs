@@ -37,15 +37,19 @@
       </div>
     </div>
     <div class="div-buttons">
-      <% if (appointment) { %>
-        <button class="btn-cancel" data-doc="<%= appointment._id %>">CANCEL APPOINTMENT</button>
-      <% } %>
-      <form action="/create-appointment" method="POST">
-        <input class="input-date" name="appointmentDate" type="hidden">
-        <input class="input-time" name="appointmentTime" type="hidden">
-        <input class="input-services" name="services" type="hidden">
-        <button type="submit">SUBMIT</button>
-      </form>
+      <div class="div-btn-cancel">
+        <% if (appointment) { %>
+          <button class="btn-cancel" data-doc="<%= appointment._id %>">CANCEL APPOINTMENT</button>
+        <% } %>
+      </div>
+      <div class="div-btn-submit">
+        <form action="/create-appointment" method="POST">
+          <input class="input-date" name="appointmentDate" type="hidden">
+          <input class="input-time" name="appointmentTime" type="hidden">
+          <input class="input-services" name="services" type="hidden">
+          <button class=submit type="submit">SUBMIT</button>
+        </form>
+      </div>
     </div>
   </div>
 

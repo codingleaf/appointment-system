@@ -118,9 +118,15 @@ option {
   min-width: 16rem;
 }
 
+.div-btn-submit {
+  margin-left: auto;
+}
+
 .div-buttons {
   display: flex;
-  justify-content: space-between;
+  flex-wrap: wrap-reverse;
+  justify-content: center;
+  gap: 0.5rem;
 }
 
 .btn-cancel {
